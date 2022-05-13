@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import { Link } from 'react-router-dom';
 
 const Veggie = () => {
   const [veggie, setVeggie] = useState([]);
@@ -11,7 +12,9 @@ const Veggie = () => {
     if (check) {
       setVeggie(JSON.parse(check));
     } else {
-      const response = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`);
+      const response = await fetch(
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`
+      );
       const data = await response.json();
       localStorage.setItem('veggie', JSON.stringify(data.recipes));
       setVeggie(data.recipes);
@@ -26,20 +29,27 @@ const Veggie = () => {
     <div>
       <Wrapper>
         <h3>Our Vegetarian Picks</h3>
-        <Splide options={{
-          perPage: 3,
-          arrows: false,
-          pagination: false,
-          drag: 'free',
-          gap: '3rem'
-        }}>
+        <Splide
+          options={{
+            perPage: 3,
+            arrows: false,
+            pagination: false,
+            drag: 'free',
+            gap: '3rem',
+          }}>
           {veggie.map((recipe) => {
             return (
               <SplideSlide key={recipe.id}>
-                <Card>
-                  <p>{recipe.title}</p>
-                  <img src={recipe.image} alt={recipe.title} />
-                </Card>
+                <Link to={`/recipe/${recipe.id}`}>
+                  <Card>
+                    <p>
+                      {recipe.title.length > 25
+                        ? recipe.title.split('').slice(0, 25).join('') + '...'
+                        : recipe.title}
+                    </p>
+                    <img src={recipe.image} alt={recipe.title} />
+                  </Card>
+                </Link>
               </SplideSlide>
             );
           })}
@@ -47,7 +57,7 @@ const Veggie = () => {
       </Wrapper>
     </div>
   );
-}
+};
 
 const Wrapper = styled.div`
   margin 4rem 0;
