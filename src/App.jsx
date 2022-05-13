@@ -1,11 +1,15 @@
 import React from "react";
-import Pages from "./pages/Pages";
+import Pages from './pages/Pages';
+import Categories from './components/Categories';
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello</h1>
-      <Pages />
+    <div className='App'>
+      <BrowserRouter>
+        <Categories />
+        <Pages />
+      </BrowserRouter>
     </div>
   );
 }
