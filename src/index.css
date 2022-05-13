@@ -16,3 +16,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h4{
+  font-size: 1rem;
+  color: rgb(65, 65, 65);
+}
+h3{
+  font-size: 1.5rem;
+  color: rgb(65, 65, 65);
+  line-height: 2.5rem;
+  margin: 2rem 0rem;
+}
+
+a{
+  color: #000;
+}
