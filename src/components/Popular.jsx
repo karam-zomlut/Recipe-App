@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Popular = () => {
+  const [popular, setPopular] = useState([]);
+
   useEffect(() => {
     getPopular();
   }, []);
@@ -10,11 +12,22 @@ const Popular = () => {
     // const data = await result.json();
     // localStorage.setItem('popular', JSON.stringify(data));
     const data = JSON.parse(localStorage.getItem('popular'));
-    console.log(data);
+    setPopular(data.recipes);
   }
 
   return (
-    <div>Popular</div>
+    <div>
+      <h1>Popular</h1>
+      {
+        popular.map(recipe => {
+          return (
+            <div key={recipe.id}>
+              <p>{recipe.title}</p>
+            </div>
+          )
+        })
+      }
+    </div>
   )
 }
 
