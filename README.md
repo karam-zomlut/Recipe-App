@@ -1,6 +1,6 @@
 
 ## <div align="center">
-  <h1 align="center"><a href="https://karam-recipe-app.netlify.app/"><img src="./public/logo.svg" /></a></h1>
+  <h1 align="center"><a href="https://karam-recipe-app.netlify.app/"><img src="./public/logo.svg" width='50' /></a></h1>
 </div>
 
 
