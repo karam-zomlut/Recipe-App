@@ -7,17 +7,11 @@ const Recipe = () => {
   const [activeTab, setActiveTab] = useState('Instructions');
   const { id } = useParams();
   const getRecipe = async (id) => {
-    const check = localStorage.getItem('singleRecipe');
-    if (check) {
-      setRecipe(JSON.parse(check));
-    } else {
-      const response = await fetch(
-        `https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
-      );
-      const data = await response.json();
-      localStorage.setItem('singleRecipe', JSON.stringify(data));
-      setRecipe(data);
-    }
+    const response = await fetch(
+      `https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_API_KEY}`
+    );
+    const data = await response.json();
+    setRecipe(data);
   };
   useEffect(() => {
     getRecipe(id);
